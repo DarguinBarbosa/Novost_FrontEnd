@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="card-col">
+    <nb-form-field style="margin:1rem;">
+      <nb-icon nbPrefix icon="search-outline" pack="eva"></nb-icon>
+      <input type="text" [(ngModel)]="term" nbInput placeholder="Filtra cualquier solicitud">
+    </nb-form-field>
+
+    <nb-card *ngFor="let datos of data |filter:term" >
+      <nb-card-header>{{datos.nombre}} {{datos.apellido}}
+      <span style="margin-left:'4rem'">
+      {{datos.t}} 
+      </span> 
+      </nb-card-header> 
+      <nb-card-body>
+       <ul  id=data >
+         
+        <li>Ficha {{datos.ficha}}</li>
+        <li>Estado {{datos.estadoNovedad}}</li>
+        <li>correo {{datos.correo}}</li>
+        <li>Fecha solicitud  {{datos.fechaSolicitud}}</li>
+        <li *ngIf="datos.fechaInicio.length !== 0"> Fecha de Inicio del aplazamiento {{datos.fechaInicio | date}}</li>
+        <li *ngIf="datos.duracionA !== 0 && datos.t =='Aplazamiento' ">meses de Aplazamiento {{datos.duracionA}} </li>
+        <li *ngIf="datos.duracionA !== 0 && datos.t =='Desercion' || datos.t =='Cancelacion Academica'  ||  datos.t =='Cancelacion por convivencia'">
+          meses de sancion {{datos.duracionA}} </li>
+        <li *ngIf="datos.t=='Aplazamiento'">Fecha en la que tiene plazo para volver {{ datos.fecha | date}} </li>
+        <li *ngIf="datos.causa.length !== 0"> Causa {{datos.causa}}</li>
+        <li *ngIf="datos.t =='Traslado Programa'">Nuevo programa {{infoFicha.nombrePrograma}}</li>
+        <li *ngIf="datos.t =='Traslado Ficha'">programa {{infoFicha.nombrePrograma}}</li>
+        <li *ngIf="datos.t =='Traslado Programa' || datos.t =='Traslado Ficha' ">Nueva Ficha {{infoFicha.numeroFicha}}</li>
+        <li *ngIf="datos.t =='Traslado Programa' || datos.t =='Traslado Ficha' ">Trimestre {{infoFicha.trimestre}}</li>
+
+       </ul>
+      </nb-card-body>
+      <nb-card-footer >
+        <div>
+            <button  style="margin-left: 36rem;"  nbButton status="warning" *ngIf="datos.t !='Reintegro'" (click)="aceptar(datos.id)">Aceptar</button>
+            <button  style="margin-left: 33rem;" nbButton status="warning" *ngIf="datos.t=='Reintegro'" (click)="asigFicha(ficha,datos)">Asignar Ficha</button>
+             <button style="margin-left:'1rem'" (click)="open(datos.id)" nbButton status="danger">Denegar</button>
+             <button style="margin-left:'1rem'" (click)="openWindow();archivo(datos.acta)" nbButton>Ver Archivo</button>
+            </div>
+            </nb-card-footer>
+    </nb-card>
+   <ng-template #contentTemplate let-data >
+    <div id="ar" >
+   <iframe style="border:'none'" id="ob"  width="500" height="375" >
+   </iframe>
+    </div>
+    </ng-template>
+
+    <ng-template #ficha let-data  let-ref="dialogRef">
+      <nb-card  *ngFor="let datos of path">
+        <nb-card-body>
+          <h1>Ficha Anterior</h1>
+         <ul>
+           <li>Ficha {{datos.numeroFicha}}</li>
+           <li>Fecha de Inicio {{datos.anio}}</li>
+           <li>Trimestre  {{datos.trimestre}}</li>
+         </ul>
+         <h1>Aprendiz</h1>
+         <ul>
+           <li>Aprendiz  {{data.nombre}} {{data.apellido}}</li>
+           <li>Correo {{data.correo}}</li> 
+         </ul>
+         <h1>Ficha Disponibles</h1>
+        <ng2-smart-table [settings]="tableSettings" [source]="tabledata" (custom)="evento($event,data);ref.close()"></ng2-smart-table>
+        </nb-card-body>
+        <nb-card-footer >
+          <button nbButton (click)="ref.close()">Cerrar</button>
+        </nb-card-footer>
+      </nb-card>
+      </ng-template>
+
+  </div>
+  </div>

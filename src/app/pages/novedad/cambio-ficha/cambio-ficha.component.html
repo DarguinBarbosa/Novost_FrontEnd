@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="card-col">
+<nb-card>
+    <nb-card-header>Traslado</nb-card-header>
+    <nb-card-body class="example-items-col">
+        <form [formGroup]="form">
+            <label>Archivo Solicitud </label><small *ngIf="this.form.get('acta').hasError('required')" style="color: red;">*</small>
+            <input nbInput id="file" fullWidth (change)="recarga($event);validateArchive()" accept=".pdf" shape="round" name="file"   type="file" >
+            <input #acta  formControlName="acta"   type="hidden"  >
+            
+                <label>Fecha Solicitud</label>
+                <input nbInput  fullWidth [value]="value | date" shape="round" readonly>
+            <label>Tipo de Traslado</label> <small *ngIf="this.form.get('tipoNovedad').hasError('required')" style="color: red;">*</small>
+            <nb-select placeholder="Selecciona alguna opcion" formControlName="tipoNovedad" shape="round" fullWidth> 
+                <nb-option  value="8">Traslado de Ficha </nb-option>
+                <nb-option  value="7">Traslado de Programa</nb-option>
+              </nb-select>
+              <label>Programa</label><small *ngIf="ficha == ''" style="color: red;">*</small>
+              <input nbInput  fullWidth  [value]="programa"(click)="open(dialog)" placeholder="Selecciona un programa"  shape="round" readonly>
+              <label>Ficha</label>
+              <input nbInput  fullWidth [value]="ficha" shape="round" readonly>
+              <label>Trimestre</label>
+              <input nbInput  fullWidth [value]="trimestre" shape="round" readonly>
+              <label>Centro</label>
+              <input nbInput  fullWidth [value]="centro" shape="round" readonly>
+        </form>
+          <ng-template #dialog let-data let-ref="dialogRef">
+    <nb-card>
+      <nb-card-header>Fichas Disponibles</nb-card-header>
+      <nb-card-body>
+    <ng2-smart-table [settings]="tableSettings" [source]="tabledata" (custom)="evento($event);ref.close()" ></ng2-smart-table>
+
+      </nb-card-body>
+
+      <nb-card-footer>
+        <button nbButton (click)="ref.close()">Cerrar</button>
+      </nb-card-footer>
+    </nb-card>
+  </ng-template>
+    </nb-card-body>
+    <nb-card-footer>
+        <button nbButton (click)="guardar()" [disabled]="form.invalid" status="warning" type="submit">Enviar</button>
+    </nb-card-footer>
+  </nb-card>
+    </div>
+</div>

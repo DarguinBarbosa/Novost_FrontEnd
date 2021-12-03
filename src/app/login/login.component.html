@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Novost - Landing Page</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- =======================================================
+  * Template Name: Mamba - v4.3.0
+  * Template URL: https://bootstrapmade.com/mamba-one-page-bootstrap-template-free/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+<body id="" (window:scroll)="allscroll($event)" >
+  <ng-template #dialog  let-ref="dialogRef">
+    <nb-card style="padding: 3rem;">
+      <nb-card-header><h1 style="padding: 1rem; font-size: 20px;">Recuperar contraseña</h1></nb-card-header>
+      <nb-card-body>
+        <p>{{email}}</p>
+        <div class="input-block">
+          <label for="email" class="input-label">Correo</label>
+          <input type="email"  [(ngModel)]="email" placeholder="Ingrese su correo">
+        </div>
+      </nb-card-body>
+      <nb-card-footer>
+        <button (click)="recuperarPas(email)" 
+        style="margin-right: 1rem; background-color: #fd822a;color:white" class="modal-button"
+        >Enviar</button>
+        <button class=" modal-button" (click)="closeVmM2()">Cerrar</button>
+      </nb-card-footer>
+    </nb-card>
+  </ng-template>
+  <!-- ======= Header ======= -->
+  <header id="header"  fragment="" class="d-flex align-items-center ">
+    <div class="container d-flex align-items-center">
+        <div class="logo me-auto">
+        <!-- <h1><a href="index.html"> <img src="assets/img/no.png" alt=""></a></h1> -->
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <a [href]="sanitizer.bypassSecurityTrustResourceUrl('index.html')"><img src="assets/img/no.png" alt="" class="img-fluid"></a>
+      </div>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" [routerLink]="['/login']" fragment="hero">Inicio</a></li>
+            <li><a class="nav-link scrollto" [routerLink]="['/login']" fragment="about">Acerca de nosotros</a></li>
+            <li><a class="nav-link scrollto" [routerLink]="['/login']" fragment="modulos">Módulos</a></li>
+            <li><a class="nav-link scrollto" [routerLink]="['/login']" fragment="Services">Funcionalidades</a></li>
+            <li><a class="nav-link scrollto" [routerLink]="['/login']" fragment="ventajas">Ventajas</a></li>
+            <li><a class="nav-link scrollto" [routerLink]="['/login']" fragment="contact">Contacto</a></li>
+         
+          <li><button (click)="open(content)" class=" modal-button" id="inicio">Iniciar Sesión</button></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle" (click)="mobile()"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero">
+
+    <div class="hero-container">
+      <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="40000">
+        <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+        <div class="carousel-inner" role="listbox">
+        <ngb-carousel [showNavigationArrows]="true" 
+[showNavigationIndicators]="true"
+[interval]=5000
+[keyboard]="true"
+[pauseOnHover]="true"
+[wrap]="true"
+[activeId]="'secondSlide'">
+        <ng-template ngbSlide>
+          <!-- Slide 1 -->
+          <div class="carousel-item active" style="background-image: url('../../assets/img/slide/slide-1.jpg');">
+            <div class="carousel-container">
+              <div class="carousel-content container">
+                <h2 class="animate__animated animate__fadeInDown">Bienvenido a <span>Novost</span></h2>
+                <p class="animate__animated animate__fadeInUp">Un software diseñado para atender a la necesidad de tener un sistema que controle, permita responder  y hacerle seguimiento a las novedades generadas en el área de teleinformática del Servicio Nacional de Aprendizaje</p>
+              </div>
+            </div>
+          </div>
+  </ng-template>
+  <ng-template ngbSlide>
+          <!-- Slide 2 -->
+          <div class="carousel-item active" style="background-image: url('https://conceptodefinicion.de/wp-content/uploads/2020/11/usuario.jpg');">
+            <div class="carousel-container">
+              <div class="carousel-content container">
+                <h2 class="animate__animated animate__fadeInDown">Usuarios</h2>
+                <p class="animate__animated animate__fadeInUp">Cuenta con el manejo de todos los usuarios en el sistema, como lo son <strong>Aprendiz, Apoyo administrativo, Administrador, Instructores líderes de ficha, de asignatura, de apoyo a coordinación y Coordinador.</strong></p>
+                <a  [routerLink]="['/login']" fragment="modulos" class="btn btn-light animate__animated animate__fadeInUp scrollto">Ir a <strong>Usuarios</strong></a>
+              </div>
+            </div>
+          </div>
+</ng-template>
+  <ng-template ngbSlide id="secondSlide">
+
+          <!-- Slide 3 -->
+             <div class="carousel-item active" style="background-image: url('https://www.lavanguardia.com/files/image_449_220/uploads/2021/07/21/60f7cd1ca07f1.jpeg');">
+            <div class="carousel-container">
+              <div class="carousel-content container">
+                <h2 class="animate__animated animate__fadeInDown">Novedades</h2>
+                <p class="animate__animated animate__fadeInUp">Aquí es donde se realiza la parte importante de nuestro software, se le permite a cada usuario en el sistema generar o procesar una novedad.</p>
+                <a [routerLink]="['/login']" fragment="modulos" class="btn btn-light animate__animated animate__fadeInUp scrollto">Ir a <strong>Novedades</strong></a>
+              </div>
+            </div>
+          </div>
+        </ng-template  > 
+        </ngb-carousel>
+        </div>
+
+      </div>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row no-gutters">
+          <div class="col-lg-6 video-box">
+            <img src="assets/img/imagen-aside.png" class="" alt="" class="img-fluid" width="600">
+          </div>
+
+          <div class="col-lg-6 d-flex flex-column justify-content-center about-content">
+
+            <div class="section-title">
+              <h2>Acerca de nosotros</h2>
+              <p><strong>Novost</strong> es un software diseñado para el seguimiento y control de las novedades generadas por los aprendices en el área de teleinformática del Servicio Nacional de Aprendizaje</p>
+            </div>
+
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon"><i class="bx bx-news"></i></div>
+              <h4 class="title"><a [routerLink]="['/login']" fragment="about">Características</a></h4>
+              <p class="description">El software esta diseñado con una combinación de tecnologías que benefician tanto al cliente <em>(en el sentido de la respuesta del sistema a sus peticiones)</em> como al programador al tener algunas de las herramientas mas fáciles y utilizadas</p>
+            </div>
+
+            <div class="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div class="icon"><i class="bx bxs-wrench"></i></div>
+              <h4 class="title"><a [routerLink]="['/login']" fragment="about">Herramientas</a></h4>
+              <p class="description">Novost utiliza una serie de herramientas que son muy famosas actualmente, como lo son: Angular en su parte gráfica o Django en su parte lógica</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Us Section -->
+
+    <!-- ======= About Lists Section ======= -->
+    <section class="about-lists text" id="modulos">
+      <div class="container">
+ <div class="text-center" data-aos="fade-up">
+            <h2 >Módulos</h2>
+            <h4 >El software cuenta con tres módulos:</h4>
+          </div>
+        <div class="row no-gutters">
+         
+
+          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up">
+            <span>01</span>
+            <h4><strong>Usuarios</strong></h4>
+            <p>Cuenta con el manejo de todos los usuarios en el sistema, como lo son <strong>Aprendiz, Apoyo administrativo, administrador, etc. </strong>En esta parte del software se realiza todo el manejo de la información del usuario, validación de datos, control de información, permisos de usuario, entre otros.</p>
+          </div>
+
+          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up" data-aos-delay="100">
+            <span>02</span>
+            <h4><strong>Novedad</strong></h4>
+            <p>Aquí es donde se realiza la parte importante de nuestro software, se le permite a cada usuario en el sistema generar o procesar una novedad. Aquí se pueden tramitar las novedades de <strong>aplazamiento, retiro voluntario, reintegración, cambio de ficha, etc.</strong> </p>
+          </div>
+
+          <div class="col-lg-4 col-md-6 content-item" data-aos="fade-up" data-aos-delay="200">
+            <span>03</span>
+            <h4><strong>Reportes</strong></h4>
+            <p>Lo que se realiza en esta parte del software son nada mas que los reportes y gráficas basado en los datos almacenados en el sistema, a su vez, también documentos <em>(PDF, excel, word, etc.)</em> que el software genera por cada novedad que este en proceso.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End About Lists Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="Services" class="services">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Funcionalidades</h2>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up">
+            <div class="icon"><i class="bx bx-upload"></i></div>
+            <h4 class="title"><a href="">Cargar listas</a></h4>
+            <p class="description">Esta función permite que mediante listas de excel se puedan cargar los aprendices al sistema.</p>
+          </div>
+          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="100">
+            <div class="icon"><i class="bx bx-download"></i></div>
+            <h4 class="title"><a href="">Generar una novedad</a></h4>
+            <p class="description">Esta función permite que se almacene todo lo relacionado a una novedad y hacerle su respectivo seguimiento.</p>
+          </div>
+          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="200">
+            <div class="icon"><i class="bi bi-globe"></i></div>
+            <h4 class="title"><a href="">Reportar una novedad - <strong>Funcionarios</strong></a></h4>
+            <p class="description">Esto permite que los funcionarios reporten a algún aprendiz <em>(decersión, condicionamiento, cancelación).</em> </p>
+          </div>
+          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="300">
+            <div class="icon"><i class="bx bxs-file-export"></i></div>
+            <h4 class="title"><a href="">Revisar solicitudes</a></h4>
+            <p class="description">Esta función permite que el apoyo administrativo pueda revisar, procesar y responder una solicitud de novedad.</p>
+          </div>
+          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="400">
+            <div class="icon"><i class="bx bxs-customize"></i></div>
+            <h4 class="title"><a href="">Crear novedad - <strong>Aprendices</strong></a></h4>
+            <p class="description">Esta función permite que los aprendices soliciten una novedad <em>(aplazamiento, retiro voluntario, reintegración).</em></p>
+          </div>
+          <div class="col-lg-4 col-md-6 icon-box" data-aos="fade-up" data-aos-delay="500">
+            <div class="icon"><i class="bx bxs-report"></i></div>
+            <h4 class="title"><a href="">Obtener reportes</a></h4>
+            <p class="description">Esta función permite que se puedan obtener los reportes parametrizados concernientes a cada novedad y detalle.</p>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+        <!-- ======= Counts Section ======= -->
+        <section class="counts section-bg" id="ventajas">
+          <div class="container">
+            <div class="section-title">
+              <h2>Ventajas</h2>
+            </div>
+            <div class="row">
+    
+              <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up">
+                <div class="count-box">
+                  <i class="bi bi-simple-smile" style="color: #20b38e;"></i>
+                  <p>Más de </p>
+                  <span class="purecounter">{{counter4}}</span>
+                  <p>novedades serán procesadas</p>
+                </div>
+              </div>
+    
+              <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="count-box">
+                  <i class="bi bi-document-folder" style="color: #c042ff;"></i>
+                  <p>Más de </p>
+                  <span  class="purecounter">{{counter}}</span>
+                  <p>aprendices beneficiados</p>
+                </div>
+              </div>
+    
+              <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" data-aos-delay="400">
+                <div class="count-box">
+                  <i class="bi bi-live-support" style="color: #46d1ff;"></i>
+                  <p>Más de </p>
+                  <span  class="purecounter">{{counter2}}</span>
+                  <p>procesos simplificados</p>
+                </div>
+              </div>
+    
+              <div class="col-lg-3 col-md-6 text-center" data-aos="fade-up" data-aos-delay="600">
+                <div class="count-box">
+                  <i class="bi bi-users-alt-5" style="color: #ffb459;"></i>
+                  <p>Novedades en</p>
+                  <span class="purecounter">{{counter3}}</span>
+                  <p>minutos o  menos</p>
+                </div>
+              </div>
+    
+            </div>
+    
+          </div>
+        </section><!-- End Counts Section -->
+
+    <!-- ======= Contact Us Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Contáctenos</h2>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-6 d-flex" data-aos="fade-up">
+            <div class="info-box">
+              <i class="bx bx-map"></i>
+              <h3>Dirección General</h3>
+              <p>Cl. 71A #74a-36, Bogotá</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="info-box">
+              <i class="bx bx-envelope"></i>
+              <h3>Correo electrónico</h3>
+              <p>senanovost@gmail.com<br>servicioalciudadano@sena.edu.co</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 d-flex" data-aos="fade-up" data-aos-delay="200">
+            <div class="info-box ">
+              <i class="bx bx-phone-call"></i>
+              <h3>Teléfonos</h3>
+              <p>(601) 5461500 <br>(601) 3430111</p>
+            </div>
+          </div>
+
+          <div class="col-lg-12" data-aos="fade-up" data-aos-delay="300">
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="col-lg-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Nombre" required>
+                </div>
+                <div class="col-lg-6 form-group">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Correo electrónico" required>
+                </div>
+              </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Asunto" required>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" placeholder="Mensaje" required></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Enviar</button></div>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Us Section -->
+
+    <!-- Login -->
+    <ng-template #content let-modal>
+    <div id='modal' class="modal">
+
+      <div class="modal-container"> 
+      
+        <div class="modal-left">
+          <a [routerLink]="['/']" fragment="login"></a>
+          <div class="mx-auto  d-flex justify-content-center">
+            <img src="assets/img/login_i.png" alt="" class="img-fluid" width="150">
+          </div>
+          <h1 class="modal-title text-center">Iniciar Sesión</h1>
+          <form [formGroup]="form">
+            <div class="input-block">
+              <label for="email" class="input-label">Número de identidad <span style="color:'red'" *ngIf="form.invalid">{{getErrortipo()}}</span></label>
+              <small style="color:'red'" *ngIf="this.form.get('documento').hasError('pattern')">Este campo solo permite numeros</small>  
+
+              <input type="number" name="documento" id="documento" formControlName="documento" placeholder="Ingrese N° de identidad">
+            </div>
+            <div class="input-block">
+              <label for="password" class="input-label">Contraseña <span style="color:'red'" *ngIf="form.invalid">{{getErrorfinApa()}}</span></label> 
+              <small style="color:'red'" *ngIf="this.form.get('password').hasError('maxlength')">Solo se permite maximo 16 carecteres</small>  
+              <small style="color:'red'" *ngIf="this.form.get('password').hasError('minlength')">Solo permite minimo 8 caracteres</small>  
+            <input [type]="getInputType()" #input name="password" id="password" formControlName="password" placeholder="Ingrese contraseña">
+
+              <nb-icon (click)="toggleShowPassword()" style="width: 20px;position: fixed;right: 3rem;top: 26rem;" [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
+                       pack="eva"
+                       [attr.aria-label]="showPassword ? 'hide password' : 'show password'">
+              </nb-icon>
+       
+              
+            <small  >{{input.value?.length || 0}}/8 Min</small>  
+
+            </div>
+            <div class="olvio">
+              <a style="cursor:pointer;" role="button" (click)="OpenPassword(dialog);">¿Olvidó su contraseña?</a>
+            </div>
+            <div class="modal-buttons">
+              <button type="submit" (click)="verificar(form.value)" class="input-button mx-auto">Ingresar</button>
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-right">
+          <img src="assets/img/login.png" alt="Imagen relacionada al sistema" class="img-fluid">
+        </div>
+        <button class="icon-button close-button" (click)="close()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
+        <path d="M 25 3 C 12.86158 3 3 12.86158 3 25 C 3 37.13842 12.86158 47 25 47 C 37.13842 47 47 37.13842 47 25 C 47 12.86158 37.13842 3 25 3 z M 25 5 C 36.05754 5 45 13.94246 45 25 C 45 36.05754 36.05754 45 25 45 C 13.94246 45 5 36.05754 5 25 C 5 13.94246 13.94246 5 25 5 z M 16.990234 15.990234 A 1.0001 1.0001 0 0 0 16.292969 17.707031 L 23.585938 25 L 16.292969 32.292969 A 1.0001 1.0001 0 1 0 17.707031 33.707031 L 25 26.414062 L 32.292969 33.707031 A 1.0001 1.0001 0 1 0 33.707031 32.292969 L 26.414062 25 L 33.707031 17.707031 A 1.0001 1.0001 0 0 0 32.980469 15.990234 A 1.0001 1.0001 0 0 0 32.292969 16.292969 L 25 23.585938 L 17.707031 16.292969 A 1.0001 1.0001 0 0 0 16.990234 15.990234 z"></path>
+    </svg>
+          </button> 
+           
+      </div>
+       
+    </div>
+   </ng-template>
+    <!-- End Login -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; Copyright <strong><span>Novost</span></strong>. Todos los derechos reservados
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a id='btni' [routerLink]="['/login']" fragment="hero" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+ 
+</body>
+</html>
+

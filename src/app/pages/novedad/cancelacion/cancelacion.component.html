@@ -1,0 +1,25 @@
+<nb-card>
+    <nb-card-body class="example-items-col">
+     <form [formGroup]="form" enctype="multipart/form-data"  (ngSubmit)="verificar(form.value)"> 
+      <input type="hidden"  value="0" formControlName="id" >
+      <label>Acta de Cancelacion</label> <small style="color: red;">{{getError()}}</small>
+      <input nbInput fullWidth  id="file"  shape="round" name="file" (change)="recarga($event);validateArchive()" accept=".pdf,.docx" type="file" >
+      <input #acta  formControlName="acta"   type="hidden"  >
+      <label>Tipo de Novedad </label><small style="color: red;">{{getErrorTipoNove()}}</small>
+      <nb-select fullWidth   shape="round" formControlName='tipoNovedad' >
+       <nb-option   value="6">Cancelacion por convivencia</nb-option>
+        <nb-option  value="5">Cancelacion Academica</nb-option>
+      </nb-select>
+      <label>Fecha Desercion</label>
+      <input type="text" [value]='value|date' nbInput  shape="round"readonly fullWidth>
+
+      <label>Aprendiz</label> <small style="color: red;"*ngIf="aprendiz ==='Selecciona un aprendiz'">*</small>
+      <input type="text" [value]="aprendiz" readonly nbInput (click)="open()"  shape="round"readonly fullWidth>
+   
+      <label>Descripcion </label> <small style="color: red;">{{getErrorCanApe()}}</small>
+  <textarea nbInput fullWidth placeholder="(Descripcion Opcional)" formControlName="DescripcionNovedad"></textarea>
+       <button nbButton status="warning" type="submit" [disabled]="form.invalid">Enviar</button>
+    </form>
+     
+    </nb-card-body>
+  </nb-card>

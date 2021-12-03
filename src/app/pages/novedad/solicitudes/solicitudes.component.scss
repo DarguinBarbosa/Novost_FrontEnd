@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  max-height: 50rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.card-row {
+  display: flex;
+  margin: 0 -0.5rem;
+}
+
+.card-col {
+  flex: 1 0 calc(70% - 1rem);
+  margin: 0 0.5rem;
+}
+:host ::ng-deep ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom {
+  margin-top: 15%;
+  font-size: 10px;
+}
+:host ::ng-deep ng2-st-tbody-custom a.ng2-smart-action.ng2-smart-action-custom-custom {
+  margin-top: 15%;
+  font-size: 10px;
+}
+nb-card {
+  max-width: 1080px;
+  max-height: 36.25rem;
+}

@@ -1,0 +1,14 @@
+<nb-card>
+      <nb-card-body class="example-items-col">
+    <form [formGroup]="secondFormGroup" (ngSubmit)="verificar(secondFormGroup.value)">
+    <label>Archivo Solicitud </label> <small style="color:'red'" *ngIf="secondFormGroup.invalid">{{getErrortipo()}}</small>
+        <input nbInput id='file' fullWidth formControlName="acta" (change)="recarga($event); validateArchive()"   shape="round" name="file" accept=".pdf" type="file" >
+        <input #acta    type="hidden" nbInput fullWidth shape="round" >
+     <label>Motivo Solicitud </label> <small style="color:'red'" *ngIf="secondFormGroup.invalid">{{getErrorfinApa()}}</small>
+     <textarea type="text" formControlName="causa" nbInput placeholder="Motivo de la solicitud"  fullWidth></textarea>
+    <label>Descripcion </label>   <small style="color:'red'" *ngIf="secondFormGroup.invalid">{{getErrorDescripcionNovedad()}}</small>
+    <textarea nbInput fullWidth placeholder="(Descripcion Opcional)" formControlName="DescripcionNovedad"></textarea>
+      <button nbButton status="warning" type="submit" [disabled]="secondFormGroup.invalid">Enviar</button>
+    </form>
+ </nb-card-body>
+    </nb-card>

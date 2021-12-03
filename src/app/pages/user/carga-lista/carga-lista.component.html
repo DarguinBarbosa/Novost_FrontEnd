@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-lg-12" style="float:none;margin:auto;">
+<nb-card>
+    <nb-card-body>
+      <nb-stepper #stepper [linear]="linearMode">
+        <nb-step label="Ficha">
+          <form  [formGroup]="form" class="step-container" (ngSubmit)="AgregarFicha()">
+            <div class="input-group">
+              <label>Centro de Formacion</label><small *ngIf="form.invalid" style="color: red;">{{getErrorCentro()}}</small>
+                <nb-select formControlName="NombreCentro" placeholder="Selecciona el centro de formacion" style="margin:rem;" shape="round" fullWidth >
+                  <nb-option value="CGMLTI">Centro de Gestión de Mercados, Logistica y Tecnologias de la Informacion</nb-option>
+                </nb-select>
+
+                <label>Coordinación</label><small *ngIf="form.invalid" style="color: red;">{{getErrorCoor()}}</small>
+                <nb-select formControlName="NombreCoordinacion" placeholder="Selecciona la coordinacion" shape="round" fullWidth>
+                  <nb-option value="Teleinformatica">Teleinformatica</nb-option>
+                  <nb-option value="Logistica">Logistica</nb-option>
+                  <nb-option value="Mercadeo">Mercadeo</nb-option>
+                  <nb-option value="Subdireccion">Subdireccion</nb-option>
+                  <nb-option value="AdministracionEducativa">Administracion educativa</nb-option>
+                  <nb-option value="FormacionProfesional">Formacion profesional</nb-option>
+                  <nb-option value="Industriascreativas">Industrias creativas</nb-option>
+                  <nb-option value="Administrativa">Administrativa</nb-option>
+                </nb-select>
+                <label>Nombre Programa </label><small *ngIf="form.invalid" style="color: red;">{{getErrorfinApa()}}</small>
+                <input type="text" formControlName="NombrePrograma" nbInput  shape="round" fullWidth>
+                <label>Version Programa </label><small *ngIf="form.invalid" style="color: red;">{{getErrorVersion()}}</small>
+                <input type="number" formControlName="VersionPrograma" nbInput  shape="round" fullWidth>
+                <input type="hidden" formControlName="id">
+                <label>Numero Ficha </label><small *ngIf="form.invalid" style="color: red;">{{getError()}}</small>
+                <input type="number" formControlName="numeroFicha" nbInput  shape="round" fullWidth>
+                <label>Trimestre</label><small *ngIf="form.invalid" style="color: red;">{{getErrorTrimes()}}</small>
+                <input type="number" formControlName="trimestre" nbInput   shape="round" fullWidth>
+                <label>Cantidad Aprendices</label><small *ngIf="form.invalid" style="color: red;">{{getErrorCanApe()}}</small>
+                <input type="number" formControlName="CantidadAprendices" nbInput  shape="round" fullWidth>
+                <label>Año</label>
+                <input type="text" [value]="value | date" nbInput  shape="round" fullWidth>
+            </div>
+            <button style="margin: '1rem'" status='warning' nbButton [disabled]="form.invalid"  nbStepperNext>Siguiente</button>
+          </form>
+        </nb-step>
+  
+        <nb-step  label="Cargar Lista">
+          <form  class="step-container"[formGroup]="form2" (ngSubmit)="listado()">
+            <div class="input-group">
+            <label>Listado de aprendices</label> <small *ngIf="form.invalid" style="color: red;">{{getErrorArchLis()}}</small>
+     <input nbInput fullWidth id="file" (change)="recarga($event);  validateArchive()"  shape="round" name="file" accept=".xls"   type="file" >
+        <input #lista  formControlName="lista"   type="hidden"  >
+        <label>Ficha</label>
+        <input type="number" [value]="form.value.numeroFicha" nbInput  shape="round" readonly fullWidth>
+        <label>Rol</label>
+        <input type="text" value="Aprendiz" nbInput  shape="round" readonly fullWidth>
+            </div>
+            <button nbButton style="margin: '1rem'" status='warning' [disabled]="form2.invalid" (click)="listado()" nbStepperNext>Siguiente</button>
+          </form>
+        </nb-step>
+        <nb-step [hidden]="true">
+          <div class="step-container">
+            <h3>Completado!</h3>
+            <h3>Confirma que se hallan cargado los aprendices, buscando en usuario!</h3>
+            <button nbButton style="margin: '1rem'" status='warning' (click)="navigate()">Confirmar</button>
+          </div>
+        </nb-step>
+      </nb-stepper>
+    </nb-card-body>
+  </nb-card>
+  </div>
+</div>

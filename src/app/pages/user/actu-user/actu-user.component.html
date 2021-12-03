@@ -1,0 +1,56 @@
+<div class="row">
+
+<div class="col-5 " style="float:none;margin:auto;">
+      <nb-card>
+        <nb-card-body>
+            <form [formGroup]="form">
+          <input type="hidden" formControlName="id" nbInput fullWidth placeholder="Project">
+          <div class="full-name-inputs">
+            <input type="text" readonly formControlName="nombreUsuario" nbInput shape="round" fullWidth placeholder="Nick">
+            <input type="text" readonly formControlName ="apellidoUsuario" nbInput shape="round" fullWidth placeholder="Last Name">
+          </div>
+          <label>Numero de Documento</label>
+          <input type="number"formControlName="numeroDocumentoUsuario" readonly nbInput fullWidth shape="round" placeholder="Rounded border">
+          
+          <label>tipo Documento</label>
+          <nb-select formControlName="tipoDocumentoUsuario" placeholder="Selecciona rol"  shape="round" fullWidth> 
+            <nb-option  value="CC">CC</nb-option>
+            <nb-option  value="TI">TI</nb-option>
+          </nb-select>
+          <label>Rol usuario</label>
+          <input type="text" [value]='user' readonly nbInput fullWidth shape="round" placeholder="Rounded border">
+
+          <label>Correo Electronico </label> <small>{{getErrorEmail()}}</small>
+          <input type="email" formControlName="email"  nbInput fullWidth shape="round" placeholder="Rounded border">
+
+          <label>Nueva Contraseña</label><small style="color: red;">{{getErrorPass()}}</small>
+          <nb-form-field>
+            <input [type]="getInputType()" formControlName="password"  nbInput fullWidth shape="round" nbInput>
+            <button nbSuffix nbButton ghost (click)="toggleShowPassword()">
+              <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
+                       pack="eva"
+                       [attr.aria-label]="showPassword ? 'hide password' : 'show password'">
+              </nb-icon>
+            </button>
+          </nb-form-field>
+          <label>Confirmar Contraseña</label>
+    <small style="color: red;" *ngIf="formGet.repeatpassword.errors">* Esta contraseña no coincide</small>
+
+          <nb-form-field>
+            <input [type]="getInputType()" formControlName="repeatpassword" nbInput fullWidth shape="round" nbInput>
+            <button nbSuffix nbButton ghost (click)="toggleShowPassword()">
+              <nb-icon [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
+                       pack="eva"
+                       [attr.aria-label]="showPassword ? 'hide password' : 'show password'">
+              </nb-icon>
+            </button>
+          </nb-form-field>
+        </form>
+        </nb-card-body>
+        <nb-card-footer>
+          <button nbButton style="margin-right:'1rem';" [disabled]='form.invalid' (click)='actu()' status="warning">Actualizar</button>
+          <button nbButton  (click)="close()" status="danger">Cerrar</button>
+        </nb-card-footer>
+      </nb-card>
+    </div>
+</div>

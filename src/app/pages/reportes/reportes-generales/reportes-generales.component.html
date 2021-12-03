@@ -1,0 +1,63 @@
+<nb-card>
+  <nb-card-header>
+    <button style="margin-right: '1rem';" nbButton (click)="open(dialog)">Reporte Personalizado</button>
+    <button nbButton (click)="generarPDF()">Reporte Global</button>
+  </nb-card-header>
+  <nb-card-body>
+<div>
+  <div>
+    <div style="display: block">
+      <canvas baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend"
+        [chartType]="barChartType">
+      </canvas>
+    </div>
+    <button nbButton status="warning" (click)="randomize()">Actualizar</button>
+  </div>
+  <ng-template #dialog let-data let-ref="dialogRef">
+    <div class="row">
+    <div class="col-5 " style="float:none;margin:auto;">
+    <nb-card>
+      <nb-card-header>
+        Filtro de reportes 
+      </nb-card-header>
+      <nb-card-body>
+        <form [formGroup]="form">
+    <label>Ficha</label>
+        <nb-select formControlName="ficha" placeholder="Selecciona Ficha" fullWidth shape="round" > 
+           <nb-option (click)="captura(l.numeroFicha,l.idFicha)" *ngFor="let l of selectFicha" value="{{l.numeroFicha}}">{{l.numeroFicha}}</nb-option>
+        </nb-select>
+        <label>Aprendiz a Filtrar</label>
+        <nb-select id="apes" formControlName="aprendiz" placeholder="Selecciona aprendiz" fullWidth  shape="round" > 
+          <nb-option (click)='infoApe(a);select=true' *ngFor="let a of ape" value="{{a.id}}">{{a.nombresUsuario}} {{a.apellidosUsuario}}</nb-option>
+       </nb-select>
+        <label>Tipo Novedad</label>
+        <nb-select id="apes" formControlName="tipoNove" (selectedChange)='capturarTipo($event)' placeholder="Selecciona tu tipo novedad" fullWidth  shape="round" > 
+          <nb-option value="2">Aplazamiento</nb-option>
+          <nb-option value="4">Reintegro</nb-option>
+          <nb-option value="3">Retiro voluntario</nb-option>
+          <nb-option value="1">Desercion</nb-option>
+          <nb-option value="6">Cancelacion Academica</nb-option>
+          <nb-option value="5">Cancelacion por convivencia</nb-option>
+          <nb-option value="8">Traslado Ficha</nb-option>
+          <nb-option value="7">Traslado Programa</nb-option>
+       </nb-select>
+       <label>Fecha Inicial</label>
+       <input type="date" nbInput fullWidth shape="round" formControlName="fecha" placeholder="Round">
+       <label>Fecha Fin</label>
+       <input type="date" nbInput fullWidth shape="round" formControlName="fechaF" placeholder="Round">
+      </form>
+      </nb-card-body>
+   <nb-card-footer>
+    <button nbButton  status="warning" (click)='ref.close();identificarPdf();'  type="submit">Generar reporte</button>
+   </nb-card-footer>
+    </nb-card>    
+  </div>
+</div>
+  </ng-template>
+</div>
+</nb-card-body>
+</nb-card>  

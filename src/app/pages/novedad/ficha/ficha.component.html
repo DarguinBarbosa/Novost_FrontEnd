@@ -1,0 +1,19 @@
+<nb-card >
+    <nb-card-body>
+<ng2-smart-table [settings]="tableSettings" [source]="data" (custom)="evento($event,dialog)"></ng2-smart-table>
+
+<ng-template #dialog let-data let-ref="dialogRef">
+    <nb-card>
+      <nb-card-header>Listado de Aprendices de la Ficha {{ data }} </nb-card-header>
+      <nb-card-body>
+        <ng2-smart-table [settings]="Settings" [source]="datos" (custom)="desercionId($event);ref.close()"></ng2-smart-table>
+      </nb-card-body>
+      <nb-card-footer>
+        <button nbButton status="danger" (click)="ref.close()">Cerrar</button>
+      </nb-card-footer>
+    </nb-card>
+  </ng-template>
+    </nb-card-body>
+  </nb-card>
+
+  

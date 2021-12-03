@@ -1,0 +1,23 @@
+<nb-card>
+      <nb-card-body class="example-items-col">
+
+    <form [formGroup]="secondFormGroup"  (ngSubmit)="verificar(secondFormGroup.value)" >
+    <label>Carta</label> <small style="color:'red'" *ngIf="secondFormGroup.invalid">{{getErrortipo()}}</small>
+    <input nbInput id="file" fullWidth (change)="recarga($event);validateArchive()" accept=".pdf" shape="round" name="file"   type="file" >
+    <input #acta  formControlName="acta"   type="hidden"  >
+        
+     <label>Fecha Inicio</label>
+     <input type="text" [value]="value | date" nbInput  readonly shape="round" fullWidth>
+       <label>Causas</label> <small style="color: red;">{{getErrorcausa()}}</small>
+  <nb-select class="select" placeholder="Causas del aplazamiento" formControlName="causa" fullWidth  shape="round" >
+      <nb-option select *ngFor="let tip of secondCtrl" [value]="tip">{{tip}}</nb-option>
+    </nb-select>
+     <label>Duracion(Meses)</label> <small style="color:'red'" *ngIf="secondFormGroup.invalid">{{getErrorfinApa()}}</small>
+     
+    <input type="number" formControlName="finApa" nbInput  (change)="capturar()" id="number"   shape="round" fullWidth>
+    
+
+        <button nbButton status="warning" type="submit" [disabled]="secondFormGroup.invalid">Enviar</button>
+    </form>
+ </nb-card-body>
+    </nb-card>

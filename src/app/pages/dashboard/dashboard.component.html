@@ -1,0 +1,36 @@
+<div *ngIf="novedad.length > 0 else ngtemplate">
+  <nb-card  *ngFor="let data of  novedad">
+      <nb-card-header>
+        <h1  style="padding: 0.5rem;">{{data.t}} </h1>
+        </nb-card-header> 
+    <nb-card-body>
+      <ul style="padding: '1rem';">
+     <li>Este es el estado de tu novedad: <strong>{{data.estadoNovedad}}</strong> </li>
+     <li>Ficha: <strong>{{data.ficha}}</strong> </li>
+     <li>Tipo novedad: <strong>{{data.t}} </strong></li>
+     <li>Fecha de la solicitud: <strong>{{data.fechaSolicitud}}</strong> </li>
+     <li>Respuesta: <strong>{{data.comentario}} </strong></li>
+    </ul>
+    </nb-card-body>
+    <nb-card-footer>
+      <a *ngIf="data.t=='Retiro Voluntario'" [routerLink]="['../novedades/retiro_voluntario/',data.id]">
+        Actualizar
+      </a>
+      <button *ngIf="data.t=='Desercion' || data.t=='Cancelacion Academica'  || data.t=='Cancelacion por convivencia'" style="margin-left:'1rem'" (click)="openWindow();archivo(data.acta)" nbButton>Ver Archivo</button>
+
+    </nb-card-footer>
+  </nb-card>
+</div>
+<ng-template #ngtemplate>
+  <nb-card>
+    <nb-card-body>
+    Bienvenido a novost
+    </nb-card-body>
+  </nb-card>
+</ng-template>
+<ng-template #contentTemplate let-data >
+  <div id="ar" >
+ <iframe style="border:'none'" id="ob"  width="500" height="375" >
+ </iframe>
+  </div>
+  </ng-template>

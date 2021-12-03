@@ -1,0 +1,17 @@
+<nb-card>
+      <nb-card-body class="example-items-col">
+       <form [formGroup]="form" (ngSubmit)="verificar(form.value)" enctype="multipart/form-data"> 
+        <input type="hidden"  value="0" formControlName="id" >
+        <label>Archivo </label> <small style="color:'red'" *ngIf="form.invalid">{{getErroracta()}}</small>
+        <input nbInput id='file' fullWidth (change)="recarga($event)"  shape="round" name="file" accept=".pdf" type="file" >
+        <input #acta  formControlName="acta"   type="hidden"  >
+        <label>Tipo de Novedad </label>
+        <input type="text" formControlName="tipoNovedad" nbInput  shape="round"readonly fullWidth>
+        <label>Descripcion </label> <small style="color:'red'" *ngIf="form.invalid">{{getErrordescripcion()}}</small>
+  
+    <textarea nbInput fullWidth placeholder="(Descripcion Opcional)" formControlName="DescripcionNovedad"></textarea>
+         <button nbButton status="warning" type="submit" [disabled]="form.invalid">{{nameBu}}</button>
+      </form>
+       
+      </nb-card-body>
+    </nb-card>

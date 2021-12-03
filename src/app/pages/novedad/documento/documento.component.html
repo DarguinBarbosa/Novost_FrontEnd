@@ -1,0 +1,13 @@
+  <nb-card>
+  <nb-card-header>Retroalimentacion para el aprendiz</nb-card-header>
+  <nb-card-body>
+<form form [formGroup]="form">
+ <textarea nbInput fullWidth placeholder="(escribe aqui)" formControlName="name"></textarea>
+</form>
+
+  </nb-card-body>
+  <nb-card-footer>
+   <button nbButton status="warning" type="submit"  (click)="submit(form.value)"  [disabled]="form.invalid">Enviar</button>
+   <button nbButton style="margin-left:'1rem'" (click)="goBack()" status="danger" type="submit">Cancelar</button>
+  </nb-card-footer>
+</nb-card>
